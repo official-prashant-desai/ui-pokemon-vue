@@ -7,7 +7,10 @@ const state = {
   pokemonOffset: 0,
   isPokemonListLoading: false,
   isErrorInPokemonList: false,
-  selectedPokemonId: 0
+  selectedPokemonId: 0,
+  nextUrl: null,
+  prevUrl: null,
+  totalRecordCount: 0,
 };
 const getters = {
   getPokemonDetailsById(state) {
@@ -29,6 +32,21 @@ const mutations = {
   },
   setSelectedPokemonId(state, selectedPokemonId) {
     state.selectedPokemonId = selectedPokemonId;
+  },
+  setPokemonLimit(state, pokemonLimit) {
+    state.pokemonLimit = pokemonLimit;
+  },
+  setPokemonOffset(state, pokemonOffset) {
+    state.pokemonOffset = pokemonOffset;
+  },
+  setPrevUrl(state, prevUrl) {
+    state.prevUrl = prevUrl;
+  },
+  setNextUrl(state, nextUrl) {
+    state.nextUrl = nextUrl;
+  },
+  setTotalRecordCount(state, totalRecordCount) {
+    state.totalRecordCount = totalRecordCount;
   }
 };
 const actions = {
@@ -39,6 +57,9 @@ const actions = {
       .then((resp) => {
         commit("setPokemonListRaw", resp.data.results);
         commit("setIsErrorInPokemonList", false);
+        commit("setPrevUrl", resp.data.previous);
+        commit("setNextUrl", resp.data.next);
+        commit("setTotalRecordCount", resp.data.count);
       })
       .catch(() => {
         commit("setIsErrorInPokemonList", true);
@@ -48,7 +69,7 @@ const actions = {
       });
   },
   fetchPokemonDetails({ state, commit }) {
-    let pokemonList = state.pokemonList;
+    let pokemonList = [];
     state.pokemonListRaw.forEach(item => {
       service.fetchPokemonDetails(item.url)
       .then((resp) => {
@@ -58,7 +79,6 @@ const actions = {
         commit("setIsErrorInPokemonList", true);
       })
       .finally(() => {
-        pokemonList.sort((a, b) => a.id - b.id);
         commit("setPokemonList", pokemonList);
         commit("setIsPokemonListLoading", false);
       });

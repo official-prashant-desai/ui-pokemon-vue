@@ -35,7 +35,6 @@ export default {
   }
   .container {
     display: flex;
-    justify-content: center;
     align-items: center;
     flex-direction: column;
     padding: 10px;
