@@ -3,20 +3,20 @@
     <div class="search-filter-panel">
       <div class="top-left-wrapper">
         <span>{{ constants.metaData.sortby }}</span>
-        <select class="filter-field capitalize" v-model="sortBy">
+        <select class="filter-field capitalize" v-model="sortBy" tabindex="1">
           <option v-for="(item, index) in sortByList" :key="'sortBy'+index" :value=item>
             {{ item }}
           </option>
         </select>
-        <input class="search-field" type="text" v-model="pokemonSearchQuery" :placeholder=constants.metaData.search />
+        <input class="search-field" tabindex="2" type="text" v-model="pokemonSearchQuery" :placeholder=constants.metaData.search />
       </div>
       <div class="top-right-wrapper">
         <span class="pagination-wrapper">
-          <button name="prev" class="nextPrevbutton" :disabled="prevUrl === null" @click="paginationFetchPokemonList">
+          <button name="prev" class="nextPrevbutton" tabindex="4" :disabled="prevUrl === null" @click="paginationFetchPokemonList">
             <i class="fas fa-angle-left"></i>
             {{ constants.metaData.prev }}
           </button>
-          <button name="next" class="nextPrevbutton" :disabled="nextUrl === null" @click="paginationFetchPokemonList">
+          <button name="next" class="nextPrevbutton" tabindex="5" :disabled="nextUrl === null" @click="paginationFetchPokemonList">
             {{ constants.metaData.next }}
             <i class="fas fa-angle-right"></i>
           </button>
@@ -32,7 +32,7 @@
         </span>
         <span class="showing-records">
           <span>{{ constants.metaData.show }}</span>
-            <select class="record-field" v-model="recordBy" @change="recordByFetchPokemonList">
+            <select class="record-field" v-model="recordBy" @change="recordByFetchPokemonList" tabindex="3">
               <option v-for="(item, index) in recordList" :key="'recordBy'+index" :value=item>
                 {{ item }}
               </option>
@@ -44,7 +44,7 @@
     <div class="list">
       <article v-for="(pokemon, index) in filteredPokemonList"
       :key="'pokemon'+index"
-      @click="navigateToDetails(pokemon.id)">
+      @click="navigateToDetails(pokemon.id)" tabindex="6">
         <div class="top-panel">
           <div class="left-panel">
             <h3>{{ pokemon.name }}</h3>
@@ -68,11 +68,11 @@
     <div class="search-filter-panel">
       <div class="top-right-wrapper width-100">
         <span class="pagination-wrapper">
-          <button name="prev" class="nextPrevbutton" :disabled="prevUrl === null" @click="paginationFetchPokemonList">
+          <button name="prev" class="nextPrevbutton" tabindex="7" :disabled="prevUrl === null" @click="paginationFetchPokemonList">
             <i class="fas fa-angle-left"></i>
             {{ constants.metaData.prev }}
           </button>
-          <button name="next" class="nextPrevbutton" :disabled="nextUrl === null" @click="paginationFetchPokemonList">
+          <button name="next" class="nextPrevbutton" tabindex="8" :disabled="nextUrl === null" @click="paginationFetchPokemonList">
             {{ constants.metaData.next }}
             <i class="fas fa-angle-right"></i>
           </button>

@@ -73,5 +73,18 @@
     "> 1%",
     "last 2 versions",
     "not dead"
-  ]
+  ],
+  "gitHooks": {
+    "pre-commit": "lint-staged && npm run lint && npm test"
+  },
+  "lint-staged": {
+    "*.{js,jsx,vue}": [
+      "vue-cli-service lint",
+      "git add"
+    ],
+    "*.{vue,htm,html,css,sss,less,scss}": [
+      "vue-cli-service lint:style",
+      "git add"
+    ]
+  }
 }
