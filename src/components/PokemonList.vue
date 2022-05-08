@@ -4,7 +4,7 @@
       <div class="top-left-wrapper">
         <span>{{ constants.metaData.sortby }}</span>
         <select class="filter-field capitalize" v-model="sortBy">
-          <option v-for="item in sortByList" :value=item>
+          <option v-for="(item, index) in sortByList" :key="'sortBy'+index" :value=item>
             {{ item }}
           </option>
         </select>
@@ -33,7 +33,7 @@
         <span class="showing-records">
           <span>{{ constants.metaData.show }}</span>
             <select class="record-field" v-model="recordBy" @change="recordByFetchPokemonList">
-              <option v-for="item in recordList" :value=item>
+              <option v-for="(item, index) in recordList" :key="'recordBy'+index" :value=item>
                 {{ item }}
               </option>
             </select>

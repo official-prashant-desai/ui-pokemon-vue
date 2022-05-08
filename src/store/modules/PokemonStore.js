@@ -50,38 +50,33 @@ const mutations = {
   }
 };
 const actions = {
-  fetchPokemonList({ commit, dispatch }, params) {
+  async fetchPokemonList({ commit, dispatch }, params) {
     commit("setIsPokemonListLoading", true);
-    service
-      .fetchPokemonList(params)
-      .then((resp) => {
-        commit("setPokemonListRaw", resp.data.results);
-        commit("setIsErrorInPokemonList", false);
-        commit("setPrevUrl", resp.data.previous);
-        commit("setNextUrl", resp.data.next);
-        commit("setTotalRecordCount", resp.data.count);
-      })
-      .catch(() => {
-        commit("setIsErrorInPokemonList", true);
-      })
-      .finally(() => {
-        dispatch("fetchPokemonDetails");
-      });
+    try {
+      const resp = await service.fetchPokemonList(params);
+      commit("setPokemonListRaw", resp.data.results);
+      commit("setIsErrorInPokemonList", false);
+      commit("setPrevUrl", resp.data.previous);
+      commit("setNextUrl", resp.data.next);
+      commit("setTotalRecordCount", resp.data.count);
+    } catch(error) {
+      commit("setIsErrorInPokemonList", true);
+    } finally {
+      dispatch("fetchPokemonDetails");
+    }
   },
-  fetchPokemonDetails({ state, commit }) {
+  async fetchPokemonDetails({ state, commit }) {
     let pokemonList = [];
-    state.pokemonListRaw.forEach(item => {
-      service.fetchPokemonDetails(item.url)
-      .then((resp) => {
+    await state.pokemonListRaw.forEach(async (item) => {
+      try {
+        const resp = await service.fetchPokemonDetails(item.url);
         pokemonList.push(resp.data);
-      })
-      .catch(() => {
+      } catch(error) {
         commit("setIsErrorInPokemonList", true);
-      })
-      .finally(() => {
+      } finally {
         commit("setPokemonList", pokemonList);
         commit("setIsPokemonListLoading", false);
-      });
+      }
     });
   }
 };
