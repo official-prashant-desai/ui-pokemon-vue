@@ -1,12 +1,12 @@
 <template>
-  <div id="app">
-    <header>
+  <div id="app" data-test="pokemonApp">
+    <header data-test="header">
       <h1>{{ constants.metaData.heading }}</h1>
     </header>
     <div class="container">
       <router-view />
     </div>
-    <footer>
+    <footer data-test="footer">
       {{ constants.metaData.footer }}
     </footer>
   </div>

@@ -1,9 +1,9 @@
 <template>
-  <div class="pokemon-list-wrapper">
-    <div v-if="isErrorInPokemonList" class="pokemon-warnings warning">
+  <div class="pokemon-list-wrapper" data-test="pokemonList">
+    <div v-if="isErrorInPokemonList" class="pokemon-warnings warning" data-test="pokemonError">
       {{ constants.errorInFetchingPokemonList }}
     </div>
-    <div v-if="isPokemonListLoading" class="pokemon-warnings">
+    <div v-if="isPokemonListLoading" class="pokemon-warnings" data-test="pokemonLoading">
       <i class="fas fa-spinner fa-spin"></i> {{ constants.pokemonListLoadingMsg }}
     </div>
     <PokemonList/>

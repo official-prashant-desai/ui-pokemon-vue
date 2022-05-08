@@ -1,6 +1,6 @@
 <template>
-  <div class="detail">
-    <div id="go-back" aria-label="go-back" tabindex="1" @click="navigateToList">
+  <div class="detail" data-test="detailsWrapper">
+    <div id="go-back" aria-label="go-back" tabindex="1" @click="navigateToList" data-test="goBackBtn">
       <i class="fas fa-arrow-left"></i>
       {{ constants.metaData.detailsPage.goBack }}
     </div>

@@ -1,5 +1,5 @@
 <template>
-  <div class="pokemon-list">
+  <div class="pokemon-list" data-test="pokemonList">
     <div class="search-filter-panel">
       <div class="top-left-wrapper">
         <span>{{ constants.metaData.sortby }}</span>

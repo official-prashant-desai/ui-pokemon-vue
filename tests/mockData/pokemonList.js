@@ -49,7 +49,7 @@ export const pokemonDataObj = {
 	game_indices: [],
 	height: 10,
 	held_items: [],
-	id: 61,
+	id: 1,
 	is_default: true,
 	location_area_encounters: "https://pokeapi.co/api/v2/pokemon/61/encounters",
 	moves: [],

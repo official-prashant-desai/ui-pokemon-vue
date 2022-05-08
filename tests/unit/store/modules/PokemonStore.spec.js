@@ -1,4 +1,3 @@
-/* eslint-disable vue/sort-keys */
 import pokemonStore from "@/store/modules/PokemonStore";
 import service from "@/service/httpService";
 import { pokemonListRaw, pokemonDataObj } from "@./../../tests/mockData/pokemonList.js";
