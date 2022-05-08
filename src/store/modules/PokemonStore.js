@@ -75,9 +75,9 @@ const actions = {
         commit("setIsErrorInPokemonList", true);
       } finally {
         commit("setPokemonList", pokemonList);
-        commit("setIsPokemonListLoading", false);
       }
     });
+    commit("setIsPokemonListLoading", false);
   }
 };
 

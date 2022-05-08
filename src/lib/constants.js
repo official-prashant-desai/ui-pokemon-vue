@@ -34,7 +34,7 @@ export const constants = {
       moves: "Pokemon Moves"
     }
   },
-  errorInFetchingPokemonList: "There is error occured while fetching Pokemon List. Please try after some time",
+  errorInFetchingPokemonList: "There is error occured while fetching Pokemon List. Please try again by refreshing browser",
   pokemonListLoadingMsg: "Pokemon's List is Loading...",
   noPokemonFound: "The pokemon was not found"
 };

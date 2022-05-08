@@ -1,10 +1,10 @@
 <template>
   <div class="pokemon-list-wrapper" data-test="pokemonList">
-    <div v-if="isErrorInPokemonList" class="pokemon-warnings warning" data-test="pokemonError">
-      {{ constants.errorInFetchingPokemonList }}
+    <div v-if="isErrorInPokemonList" class="pokemon-warnings" data-test="pokemonError">
+      <span>{{ constants.errorInFetchingPokemonList }}</span>
     </div>
     <div v-if="isPokemonListLoading" class="pokemon-warnings" data-test="pokemonLoading">
-      <i class="fas fa-spinner fa-spin"></i> {{ constants.pokemonListLoadingMsg }}
+      <span><i class="fas fa-spinner fa-spin"></i> {{ constants.pokemonListLoadingMsg }}</span>
     </div>
     <PokemonList/>
   </div>
@@ -39,16 +39,20 @@
     width: 100%;
     max-width: calc(100% - 100px);
     .pokemon-warnings {
-      border-radius: 8px;
-      padding: 50px 20px;
-      background: #ffffff;
-      font-size: 18px;
+      background: #000000;
+      font-size: 25px;
       text-align: center;
-      box-shadow: 0 15px 30px rgba(0,0,0,.2),
-                  0 10px 10px rgba(0,0,0,.2);
-    }
-    .warning {
-      color: #B4401B;
+      position: absolute;
+      height: 100%;
+      width: 100%;
+      top: 0;
+      left: 0;
+      opacity: 0.7;
+      color: #fff;
+      > span {
+        top: 30%;
+        position: relative;
+      }
     }
   }
 </style>
