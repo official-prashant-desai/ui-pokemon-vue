@@ -100,8 +100,8 @@
         constants,
         recordList: constants.recordList,
         sortByList: constants.sortByList,
-        pokemonSearchQuery: null,
-        sortBy: "name",
+        pokemonSearchQuery: window.localStorage.getItem("pokemonSearchQuery") || "",
+        sortBy: window.localStorage.getItem("pokemonSortBy") || "name",
         recordBy: 20,
         previousBtnDisabled: true,
         nextBtnDisabled: null
@@ -110,6 +110,10 @@
     computed: {
       filteredPokemonList() {
         let filterPokemonList = this.pokemonList;
+
+        // same this values to localstorage to be persistent for browser refresh -- alternate vuex-persistedstate
+        window.localStorage.setItem("pokemonSearchQuery", this.pokemonSearchQuery);
+        window.localStorage.setItem("pokemonSortBy", this.sortBy);
 
         // search pokemon by name or abilities
         if (this.pokemonSearchQuery) {
