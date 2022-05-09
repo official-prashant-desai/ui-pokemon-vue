@@ -5,10 +5,8 @@ ui-pokemon-vue is an learning project using vuejs. First page will give you list
 http://localhost:8080/pokemon-list
 
 Technical stack used_
-Vue.js (version 2)
-Vuex - state management
-vue-router
-jest - unit test cases.
+
+Vue.js (version 2), Vuex - state management, vue-router and jest - unit test cases.
 
 ## Project setup
 ```
