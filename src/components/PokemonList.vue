@@ -1,22 +1,35 @@
 <template>
   <div class="pokemon-list" data-test="pokemonList">
-    <div class="search-filter-panel">
-      <div class="top-left-wrapper">
-        <span>{{ constants.metaData.sortby }}</span>
+    <div class="filter-panel">
+      <div class="filter-component">
+        <div>{{ constants.metaData.sortby }}</div>
         <select class="filter-field capitalize" v-model="sortBy" tabindex="1">
           <option v-for="(item, index) in sortByList" :key="'sortBy'+index" :value=item>
             {{ item }}
           </option>
         </select>
+      </div>
+      <div class="filter-component">
+        <div>{{ constants.metaData.searchLabel }}</div>
         <input class="search-field" tabindex="2" type="text" v-model="pokemonSearchQuery" :placeholder=constants.metaData.search />
       </div>
+      <div class="filter-component">
+        <div>{{ constants.metaData.noOfRecords }}</div>
+        <select class="record-field" v-model="recordBy" @change="recordByFetchPokemonList" tabindex="3">
+          <option v-for="(item, index) in recordList" :key="'recordBy'+index" :value=item>
+            {{ item }}
+          </option>
+        </select>
+      </div>
+    </div>
+    <div class="search-filter-panel">
       <div class="top-right-wrapper">
         <span class="pagination-wrapper">
-          <button name="prev" class="nextPrevbutton" tabindex="4" :disabled="prevUrl === null" @click="paginationFetchPokemonList">
+          <button name="prev" class="nextPrevbutton" tabindex="7" :disabled="prevUrl === null" @click="paginationFetchPokemonList">
             <i class="fas fa-angle-left"></i>
             {{ constants.metaData.prev }}
           </button>
-          <button name="next" class="nextPrevbutton" tabindex="5" :disabled="nextUrl === null" @click="paginationFetchPokemonList">
+          <button name="next" class="nextPrevbutton" tabindex="8" :disabled="nextUrl === null" @click="paginationFetchPokemonList">
             {{ constants.metaData.next }}
             <i class="fas fa-angle-right"></i>
           </button>
@@ -30,17 +43,8 @@
             {{ totalRecordCount }}
           <span>{{ constants.metaData.records }}</span>
         </span>
-        <span class="showing-records">
-          <span>{{ constants.metaData.show }}</span>
-            <select class="record-field" v-model="recordBy" @change="recordByFetchPokemonList" tabindex="3">
-              <option v-for="(item, index) in recordList" :key="'recordBy'+index" :value=item>
-                {{ item }}
-              </option>
-            </select>
-          <span>{{ constants.metaData.cards }}</span>
-        </span>
       </div>
-    </div> 
+    </div>
     <div class="list">
       <article v-for="(pokemon, index) in filteredPokemonList"
       :key="'pokemon'+index"
@@ -199,55 +203,11 @@
 <style lang="scss" scoped>
   .pokemon-list {
     .search-filter-panel {
-      padding: 20px 0;
+      margin-bottom: 20px;
       display: flex;
       flex-direction: row;
-      .top-left-wrapper {
-        width: 40%;
-        > span {
-          padding-right: 2%;
-        }
-        .filter-field {
-          padding: 10px 15px;
-          border: 1px solid #D1D1D1;
-          font-size: 17px;
-          border-radius: 7px;
-          font-family: 'Acme', arial;
-          width: 23%;
-          box-shadow: 0 5px 10px rgba(0,0,0,.2),
-                    0 5px 10px rgba(0,0,0,.2);
-        }
-        .search-field {
-          padding: 10px 15px;
-          border: 1px solid #D1D1D1;
-          font-size: 17px;
-          border-radius: 7px;
-          font-family: 'Acme', arial;
-          width: 50%;
-          margin-left: 2%;
-          box-shadow: 0 5px 10px rgba(0,0,0,.2),
-                      0 5px 10px rgba(0,0,0,.2);
-        }
-      }
       .top-right-wrapper {
-        width: 60%;
-        .showing-records {
-          float: right;
-          padding-right: 20px;
-          border-right: 1px solid #D1D1D1;
-          > span {
-            padding: 10px;
-          }
-          .record-field {
-            padding: 10px 15px;
-            border: 1px solid #D1D1D1;
-            font-size: 17px;
-            border-radius: 7px;
-            font-family: 'Acme', arial;
-            box-shadow: 0 5px 10px rgba(0,0,0,.2),
-                    0 5px 10px rgba(0,0,0,.2);
-          }
-        }
+        width: 100%;
         .pagination-wrapper {
           float: right;
           padding-left: 20px;
@@ -278,20 +238,18 @@
           float: right;
           padding: 15px 0 15px 30px;
           font-weight: bold;
+          word-spacing: 3px;
           > span {
             font-weight: normal;
-            margin: 0 3px;
           }
         }
-      }
-      .width-100 {
-        width: 100%;
       }
     }
     .list {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
       grid-gap: 15px;
+      margin-bottom: 20px;
 
       article {
         background-color: #ffffff;
@@ -345,6 +303,71 @@
       line-height: 30px;
       box-shadow: 0 15px 30px rgba(0,0,0,.2),
                   0 10px 10px rgba(0,0,0,.2);
+    }
+    .filter-panel {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      grid-gap: 2%;
+      padding: 20px;
+      margin: 20px 0;
+      border-radius: 5px;
+      background: #DDEFF1;
+      box-shadow: 0 15px 30px rgba(0,0,0,.1),
+                  0 10px 10px rgba(0,0,0,.1);
+      .filter-component {
+        padding-bottom: 10px;
+        > div {
+          margin-bottom: 7px;
+        }
+        .filter-field, .search-field, .record-field {
+          padding: 3% 4%;
+          border: 1px solid #D1D1D1;
+          font-size: 17px;
+          border-radius: 7px;
+          font-family: 'Acme', arial;
+          width: 100%;
+          box-shadow: 0 5px 10px rgba(0,0,0,.2),
+                      0 5px 10px rgba(0,0,0,.2);
+        }
+        .search-field {
+          width: 92%;
+        }
+      }
+    }
+    .pagination-panel {
+      margin: 20px 0;
+      float: right;
+      .pagination-wrapper {
+        .nextPrevbutton {
+          border-radius: 7px;
+          border: 1px solid #0D1E63;
+          font-size: 17px;
+          font-family: 'Acme', arial;
+          margin: 0 0 0 20px;
+          padding: 10px 15px;
+          color: #ffffff;
+          cursor: pointer;
+          background: #122885;
+          box-shadow: 0 5px 10px rgba(0,0,0,.2),
+                    0 5px 10px rgba(0,0,0,.2);
+          &:disabled {
+            border: 1px solid #D1D1D1;
+            background: #f1f1f1;
+            color: #BCB4BE;
+            cursor: not-allowed;
+          }
+          i {
+            margin: 5px;
+          }
+        }
+      }
+      .records-count {
+        font-weight: bold;
+        word-spacing: 3px;
+        > span {
+          font-weight: normal;
+        }
+      }
     }
   }
 </style>

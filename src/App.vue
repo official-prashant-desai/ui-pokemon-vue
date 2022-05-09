@@ -50,7 +50,7 @@ export default {
     h1 {
       color: #ffffff;
       margin: 0;
-      padding: 15px 0;
+      padding: 15px 10px;
       display: flex;
       justify-content: center;
     }
@@ -60,7 +60,7 @@ export default {
     color: #ffffff;
     display: flex;
     justify-content: center;
-    padding: 15px 0;
+    padding: 15px 10px;
   }
   .capitalize {
     text-transform: capitalize;

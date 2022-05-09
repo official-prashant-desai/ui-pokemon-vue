@@ -123,7 +123,7 @@
       }
       > div {
         width: 100%;
-        margin-bottom: 15px;
+        margin-bottom: 2%;
       }
       .image-info-panel {
         display: flex;
@@ -158,11 +158,6 @@
         }
       }
       .types-panel, .ability-panel, .moves-panel {
-        padding: 10px;
-        border-radius: 8px;
-        background: #FDFDFD;
-        box-shadow: 0 0 5px rgba(0, 0, 0, .1),
-                    0 3px 10px rgba(0, 0, 0, .1);
         h3 {
           border-bottom: 1px solid #DEE4EA;
           margin: 0 0 15px 0;
@@ -185,6 +180,38 @@
       }
       .moves {
         background: #022964;
+      }
+    }
+  }
+  @media (min-width: 320px) and (max-width: 919px) {
+    .detail {
+      width: 90%;
+      .pokemon-details {
+        .image-info-panel {
+          .image {
+            img {
+              width: 8em;
+              height: 8em;
+            }
+          }
+        }
+      }
+    }
+  }
+  @media (min-width: 320px) and (max-width: 519px) {
+    .detail {
+      .pokemon-details {
+        .image-info-panel {
+          display: block;
+          .image {
+            padding: 0;
+            text-align: center;
+            img {
+              width: 10em;
+              height: 10em;
+            }
+          }
+        }
       }
     }
   }

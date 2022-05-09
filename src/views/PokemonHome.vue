@@ -37,7 +37,7 @@
 <style lang="scss" scoped>
   .pokemon-list-wrapper {
     width: 100%;
-    max-width: calc(100% - 100px);
+    max-width: calc(100% - 10%);
     .pokemon-warnings {
       background: #000000;
       font-size: 25px;
