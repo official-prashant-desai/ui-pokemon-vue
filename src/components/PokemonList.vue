@@ -25,7 +25,7 @@
           <span>{{ constants.metaData.showing }}</span>
             {{ pokemonOffset + 1 }}
           <span>{{ constants.metaData.to }}</span>
-            {{ pokemonOffset + pokemonLimit }}
+            {{ pokemonOffset + filteredPokemonList.length }}
           <span>{{ constants.metaData.of }}</span>
             {{ totalRecordCount }}
           <span>{{ constants.metaData.records }}</span>
@@ -86,7 +86,7 @@
           <span>{{ constants.metaData.showing }}</span>
             {{ pokemonOffset + 1 }}
           <span>{{ constants.metaData.to }}</span>
-            {{ pokemonOffset + pokemonLimit }}
+            {{ pokemonOffset + filteredPokemonList.length }}
           <span>{{ constants.metaData.of }}</span>
             {{ totalRecordCount }}
           <span>{{ constants.metaData.records }}</span>
