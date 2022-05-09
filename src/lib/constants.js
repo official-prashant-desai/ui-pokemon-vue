@@ -22,6 +22,8 @@ export const constants = {
     to: "to",
     of: "of",
     records: "records",
+    noResult1: "There is no Pokemon available for given search. Please try searching by different name or ability.",
+    noResult2: "Alternatively, you can try next set of records by clicking 'Next' button.",
     detailsPage: {
       goBack: "Go back",
       name: "Pokemon Name",

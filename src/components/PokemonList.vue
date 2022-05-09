@@ -65,6 +65,11 @@
         </div>
       </article>
     </div>
+    <div v-if="filteredPokemonList.length === 0" class="no-result-found">
+      <span>{{ constants.metaData.noResult1 }}</span>
+      <br>
+      <span>{{ constants.metaData.noResult2 }}</span>
+    </div>
     <div class="search-filter-panel">
       <div class="top-right-wrapper width-100">
         <span class="pagination-wrapper">
@@ -329,6 +334,17 @@
           }
         }
       }
+    }
+    .no-result-found {
+      background: #ffffff;
+      border-radius: 7px;
+      padding: 10%;
+      text-align: center;
+      font-size: 20px;
+      margin: 2% 0;
+      line-height: 30px;
+      box-shadow: 0 15px 30px rgba(0,0,0,.2),
+                  0 10px 10px rgba(0,0,0,.2);
     }
   }
 </style>
